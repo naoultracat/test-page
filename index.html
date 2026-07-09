@@ -1,0 +1,1799 @@
+<style>
+/* ==========================================================
+   レビュー記事用スタイルシート
+   モバイルファースト / 比較サイト風のポップで親しみやすいデザイン
+   変更点:
+   1. フォント: 明朝体を廃止し全面的にゴシック系に統一
+      （--font-display をゴシックスタックに変更。使用箇所はそのまま）
+   2. 配色: 深い青緑ベース → 明るいブルー基調＋オレンジのアクセント
+      （国内のサービス比較サイトによくあるポップな配色に）
+   3. livedoorブログ モバイル表示対策:
+      - 口コミアイコン (.circle-icon) のサイズ固定
+      - 表の罫線・中央揃え・リンク色・下線を !important で保護
+   ========================================================== */
+
+/* ---------- デザイントークン ---------- */
+:root {
+  --color-bg: #f5f8fc;
+  --color-surface: #ffffff;
+  --color-ink: #333333;
+  --color-ink-soft: #6f7680;
+  --color-accent: #2b7de9;
+  --color-accent-soft: #e9f2fd;
+  --color-highlight: #ffec9e;
+  --color-warn: #f0663d;
+  --color-cta: #ff8a3d;
+  --color-border: #dde5ef;
+  --radius: 10px;
+  --shadow: 0 2px 10px rgba(43, 60, 90, 0.10);
+  --font-body: "Hiragino Kaku Gothic ProN", "Noto Sans JP",
+               "Yu Gothic Medium", "游ゴシック Medium", sans-serif;
+  --font-display: "Hiragino Kaku Gothic ProN", "Noto Sans JP",
+                  "Yu Gothic", "游ゴシック", sans-serif;
+}
+
+/* ---------- ベース ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0 16px 64px;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-accent) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(43, 125, 233, 0.35) !important;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.75;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+ol, ul {
+  padding-left: 1.4em;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 0.4em;
+}
+
+/* ---------- 記事タイトル ---------- */
+.blog-title-h {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 32px 0 8px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.pr-tag-box-h {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--color-ink-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  padding: 1px 8px;
+  margin-bottom: 24px;
+}
+
+/* ---------- 冒頭カード ---------- */
+.title-card-h {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px 20px;
+  margin: 0 0 32px;
+  text-align: center;
+}
+
+.tc-logo-h {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 999px;
+  padding: 2px 14px;
+  margin-bottom: 14px;
+}
+
+.tc-main-text-h {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.tc-tail-h {
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  text-align: left;
+  display: inline-block;
+}
+
+/* ---------- 本文 ---------- */
+.plain-text-sec {
+  margin: 24px 0;
+}
+
+.strong-text {
+  font-weight: 700;
+}
+
+.color-text {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.highlight-text,
+.marker-text {
+  background: linear-gradient(transparent 62%, var(--color-highlight) 62%);
+  font-weight: 700;
+}
+
+/* ---------- 見出し ---------- */
+.title-lv1-a {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 56px 0 24px;
+  padding: 14px 16px;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: 6px;
+}
+
+.title-lv2-a {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 44px 0 20px;
+  padding: 8px 0 8px 14px;
+  border-left: 4px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table-title-h,
+.table-title-a {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 36px 0 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--color-accent);
+}
+
+/* ---------- 情報ボックス（共通） ---------- */
+.text-box-1-h,
+.text-box-1-a,
+.abst-h,
+.index-h,
+.list-box-1,
+.rich-design-list-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 28px 0;
+}
+
+.text-box-1-title-h,
+.text-box-1-a-title,
+.abst-title-h,
+.index-title-h,
+.list-box-1-title {
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--color-border);
+}
+
+.text-box-1-a-content ul,
+.abst-h ol,
+.index-content-h ol {
+  margin-top: 4px;
+}
+
+/* デメリット系（color2）は暖色に */
+.text-box-1-a.color2 {
+  border-color: #ffd9c4;
+  background: #fff6f0;
+}
+
+.text-box-1-a.color2 .text-box-1-a-title {
+  color: var(--color-warn);
+  border-bottom-color: #ffd9c4;
+}
+
+/* 強調まとめ系（color3） */
+.text-box-1-a.color3 {
+  background: var(--color-accent-soft);
+  border-color: #c6ddf7;
+}
+
+/* ---------- 目次 ---------- */
+.index-content-h ol ol {
+  margin-top: 6px;
+  font-size: 0.95em;
+  color: var(--color-ink-soft);
+}
+
+/* ---------- 基本情報リスト ---------- */
+.list-box-1-sub-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.08em;
+  margin-top: 14px;
+}
+
+.list-box-1-content {
+  padding: 4px 0 10px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.list-box-1-content:last-child {
+  border-bottom: none;
+}
+
+/* ---------- 引用 ---------- */
+.quote-text-box {
+  position: relative;
+  margin: 28px 0;
+  padding: 20px 20px 20px 24px;
+  background: var(--color-accent-soft);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.95rem;
+}
+
+.quote-tail-note {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+  text-align: right;
+}
+
+/* ---------- 比較テーブル（table要素版） ---------- */
+.service-list-table-h {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.88rem;
+  margin: 12px 0 32px;
+  display: block;
+  overflow-x: auto;
+}
+
+.service-list-table-h thead th {
+  background: var(--color-accent) !important;
+  color: #fff !important;
+  font-weight: 700;
+  padding: 10px 12px !important;
+  white-space: nowrap;
+  text-align: center !important;
+  border: 1px solid var(--color-accent) !important;
+}
+
+.service-list-table-h td {
+  padding: 14px 12px !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  border-left: none !important;
+  border-right: none !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+  min-width: 120px;
+}
+
+.service-list-table-h td:nth-child(2) {
+  min-width: 240px;
+}
+
+/* 表内リンクの色・下線を保護 */
+.service-list-table-h a {
+  color: #fff !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.table-strong-text-h,
+.table-strong-text-a {
+  display: block;
+  font-weight: 700;
+  color: var(--color-accent) !important;
+  margin-bottom: 4px;
+}
+
+.link-button-h,
+.table-button-a {
+  display: inline-block;
+  background: var(--color-cta) !important;
+  color: #fff !important;
+  font-weight: 700;
+  text-align: center !important;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: none !important;
+  border-bottom: none !important;
+  white-space: nowrap;
+}
+
+/* ボタン型リンクの下線は消す */
+a.link-button-h,
+a.table-button-a,
+.cell-a a:has(> .table-button-a) {
+  border-bottom: none !important;
+}
+
+/* ---------- 比較テーブル（div版 hikaku-table-a） ---------- */
+.hikaku-table-a {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 16px;
+  margin: 32px 0;
+}
+
+.hikaku-table-a-subtitle {
+  text-align: center !important;
+  font-size: 0.8rem;
+  color: var(--color-warn) !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.hikaku-table-a-title {
+  text-align: center !important;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 4px 0 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--color-accent) !important;
+}
+
+/* モバイルではカード状に積む */
+.title-row-a {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 4px;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+.title-row-a:last-child {
+  border-bottom: none !important;
+}
+
+/* ヘッダー行はモバイルでは隠す */
+.hikaku-table-a > .title-row-a:first-of-type {
+  display: none;
+}
+
+.cell-a img {
+  max-width: 180px;
+}
+
+.cell-a .table-button-a {
+  width: 100%;
+  display: block;
+}
+
+.cell-a a {
+  border-bottom: none !important;
+}
+
+/* div版テーブル内リンクの色・下線を保護 */
+.hikaku-table-a a {
+  color: #fff !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* ---------- 評価テーブル ---------- */
+.ev-table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: var(--color-surface) !important;
+  border: 1px solid var(--color-border) !important;
+  font-size: 0.88rem;
+  margin: 12px 0 32px;
+}
+
+.ev-table td {
+  padding: 12px 10px !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  border-left: none !important;
+  border-right: none !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+}
+
+.ev-label {
+  font-weight: 700;
+  white-space: nowrap;
+  background: #eef4fb !important;
+  width: 6.5em;
+  text-align: center !important;
+}
+
+.tier-badge {
+  display: inline-block;
+  min-width: 2.4em;
+  text-align: center !important;
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #fff !important;
+}
+
+.tier-badge.t-sp { background: #f2a713 !important; }
+.tier-badge.t-s  { background: #2eab5e !important; }
+.tier-badge.t-a  { background: #2b7de9 !important; }
+.tier-badge.t-am { background: #7fa8d9 !important; }
+
+.ev-comment {
+  color: var(--color-ink-soft);
+  font-size: 0.85rem;
+}
+
+/* 評価テーブル内リンク */
+.ev-table a {
+  color: #fff !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* ---------- 著者プロフィール ---------- */
+.profile-box-h {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin: 32px 0;
+}
+
+.profile-box-title-h {
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.profile-box-h img {
+  width: 88px !important;
+  height: 88px !important;
+  max-width: 88px !important;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block !important;
+  margin: 0 auto 8px !important;
+}
+
+.profile-box-name-h {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pbfh-title-h {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 6px;
+}
+
+.pbfh-content-h {
+  font-size: 0.88rem;
+  color: var(--color-ink-soft);
+}
+
+/* ---------- 口コミカード ---------- */
+.pastel-color-filled-round-corner-box {
+  background: #f0f6ff;
+  border: 1px solid #d7e5f7;
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 24px 0;
+  font-size: 0.95rem;
+}
+
+.right-left-align {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.circle-icon {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bold-color-text {
+  font-weight: 700;
+  color: var(--color-accent);
+  line-height: 1.5;
+}
+
+.gray-text,
+.gray-small-text,
+.gray-note-text,
+.image-note {
+  font-size: 0.78rem;
+  color: var(--color-ink-soft);
+}
+
+.gray-note-text {
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* ---------- ワンポイントアドバイス ---------- */
+.one-point-advice-box {
+  margin: 24px 0;
+}
+
+.left-right-align {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.icon-like-circle-image {
+  width: 48px !important;
+  height: 48px !important;
+  max-width: 48px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bold-name-text {
+  font-weight: 700;
+}
+
+.gray-filled-round-corner-box {
+  background: #eef2f7;
+  border-radius: var(--radius);
+  padding: 18px;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+/* ---------- 選ばれる理由（装飾リスト） ---------- */
+.rich-design-list-box.color-border {
+  border: 2px solid var(--color-accent);
+}
+
+.rdlb-rich-laurel-decorated-title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.ldt-small-sub-text {
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.ldt-main-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.rdlb-rich-number-decorated-list ol {
+  counter-reset: rich-list;
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.rdlb-rich-number-decorated-list li {
+  counter-increment: rich-list;
+  position: relative;
+  padding-left: 2.4em;
+  margin-bottom: 0.8em;
+}
+
+.rdlb-rich-number-decorated-list li::before {
+  content: counter(rich-list);
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- CTAボタン ---------- */
+.wide-width-shadowed-button-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(180deg, #ff9a52, var(--color-cta)) !important;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  padding: 16px 20px;
+  margin: 32px auto;
+  max-width: 480px;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+a:has(> .wide-width-shadowed-button-centered) {
+  border-bottom: none !important;
+}
+
+.wide-width-shadowed-button-centered:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.button-white-filled-left-badge {
+  background: #fff !important;
+  color: var(--color-warn) !important;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 999px;
+  padding: 4px 12px;
+  flex-shrink: 0;
+}
+
+.button-white-bold-text {
+  color: #fff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* ---------- 画像 ---------- */
+.wide-width-centered-image {
+  margin: 20px auto 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.text-align-right {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+/* ---------- モーション配慮 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ==========================================================
+   タブレット以上（768px〜）
+   ========================================================== */
+@media (min-width: 768px) {
+  body {
+    font-size: 17px;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .blog-title-h {
+    font-size: 1.9rem;
+    margin-top: 48px;
+  }
+
+  .tc-main-text-h {
+    font-size: 1.6rem;
+  }
+
+  .title-lv1-a {
+    font-size: 1.5rem;
+    padding: 16px 22px;
+  }
+
+  .title-lv2-a {
+    font-size: 1.3rem;
+  }
+
+  .title-card-h,
+  .profile-box-h,
+  .text-box-1-h,
+  .text-box-1-a,
+  .abst-h,
+  .index-h,
+  .list-box-1,
+  .rich-design-list-box,
+  .hikaku-table-a {
+    padding: 28px;
+  }
+
+  /* 比較テーブル（div版）を3カラムのグリッドに */
+  .title-row-a {
+    display: grid;
+    grid-template-columns: 160px 1fr 110px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hikaku-table-a > .title-row-a:first-of-type {
+    display: grid;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-ink-soft);
+    text-align: center !important;
+    padding: 8px 4px;
+  }
+
+  .cell-a img {
+    max-width: 100%;
+  }
+
+  .service-list-table-h {
+    display: table;
+    overflow-x: visible;
+  }
+
+  .ev-table {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
+<div class="blog-title-h">
+ペイトナーの評判！本当に安全に使える？審査落ちや実際の口コミを独自調査
+</div>
+
+<div class="pr-tag-box-h">PR</div>
+
+<div class="title-card-h">
+	<div class="tc-logo-h">専門家が解説</div>
+	<div class="tc-main-text-h">ペイトナー<br>どんなファクタリングサービス？</div>
+	<div class="tc-tail-h">
+		✔実際に利用した人の口コミは？<br>
+		✔ヤミ金ではない？安心して利用できる？
+	</div>
+</div>
+
+<div class="plain-text-sec">
+ペイトナーは<span class="strong-text">請求書の即日現金化</span>から<span class="strong-text">個人事業主・フリーランス向けの少額ファクタリング</span>まで対応した買取型ファクタリングサービスですが、実際の利用者の口コミはどうでしょうか？
+</div>
+
+<div class="text-box-1-h">
+	<div class="text-box-1-title-h">
+		アンケート結果
+	</div>
+	<div class="text-box-1-content-h">
+		2025年3月以降に実施した利用者満足度調査（回答者4,067名）では、5段階評価で4以上の回答比率が高い水準を記録
+	</div>
+</div>
+
+<div class="plain-text-sec">
+<span class="highlight-text">ペイトナーを利用したフリーランス・個人事業主に実態調査を行ったところ、2025年3月以降の利用者満足度調査（回答者4,067名）で5段階評価4以上の回答比率が高い水準を記録しており、ファクタリングサービスの中では概ね高い評価を得る結果となりました。</span><br>
+<br>
+今回はペイトナーのサービスについて、実際にペイトナーを利用した方の口コミを元にメリット・デメリットやサービスの特徴、さらに賢く使う方法についても紹介します。
+</div>
+
+<div class="abst-h">
+	<div class="abst-title-h">この記事を読むと分かること</div>
+	<div class="index-content-h"><ol>
+		<li>ペイトナーの特徴・概要</li>
+		<li>ペイトナーの利用方法</li>
+		<li>ペイトナーを利用するメリット</li>
+		<li>ペイトナーの利用がおすすめな方</li>
+	</ol></div>
+</div>
+
+<div class="table-title-h">
+	競合ファクタリングサービスとの比較
+</div>
+<table class="service-list-table-h">
+  <thead>
+    <tr>
+      <th>サービス</th>
+      <th>ポイント</th>
+      <th>公式サイト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://lite-link.org/images/Kg5Fkq/EasyFactor_イージーファクター_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料2%〜8%・最短60分で資金調達！</span><br>
+      	東証スタンダード上場企業が運営。ZoomとクラウドサインによるWeb契約で完全オンライン完結。法人・個人事業主どちらも利用可能。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/yIcVAC/ネクストワン_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">資金調達成功率96%・最短2時間で入金！</span><br>
+      	手数料1.5%〜10%。2社間・3社間どちらも対応。30万円から上限なしで利用でき、元銀行員スタッフが丁寧にサポート。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/vQew1O/QuQuMo_ククモ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料1%〜・買取上限なしで最短2時間現金化！</span><br>
+      	必要書類は請求書と通帳の2点のみ。債権譲渡登記不要で完全オンライン完結。少額から高額まで幅広く対応。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/BIhqI-/えんナビ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">審査通過率97%・24時間365日対応！</span><br>
+      	お客様満足度93%。利用可能額は50万円〜5,000万円と幅広く、2社間・3社間どちらにも対応。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/HH7QjG/ファクタリングサービス「えんナビ」">詳細 ▶</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="profile-box-h">
+	<div class="profile-box-title-h">【著者】 守谷啓助 徹底比較サイト 代表</div>
+	<img src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+	<div class="profile-box-name-h">徹底比較サイト 代表 守谷啓助</div>
+	<div class="profile-box-foldable-history-h">
+		<div class="pbfh-title-h">経歴</div>
+		<div class="pbfh-content-h">
+			「本当に使えるサービスを、自分の目で確かめてから伝えたい」——そのこだわりが、このサイトを立ち上げたきっかけです。<br>
+			通信・サブスクリプション・家電・金融・アプリなど、ジャンルを問わずあらゆるサービスを徹底的に調査して比較・評価しています。スペック表や公式情報だけを並べる「まとめ記事」ではなく、徹底的な調査に基づく実際の口コミ等に基づいた情報提供を徹底しているのが、このサイトの特徴です。<br>
+			比較にあたっては感覚や印象に頼らず、できる限りデータと根拠をもとに判断するよう心がけています。「なんとなく良さそう」ではなく「なぜこちらを選ぶべきか」を明確に示すことが、読者への誠実さだと考えています。<br>
+			忖度なし、広告主への配慮なし。あなたが「本当に得をする選択」をするための情報を、これからも発信し続けます。
+		</div>
+	</div>
+</div>
+
+<div class="index-h">
+	<div class="index-title-h">目次</div>
+	<div class="index-content-h"><ol>
+		<li>ペイトナーはフリーランス・個人事業主向けファクタリング専門サービス<ol>
+			<li>ペイトナー株式会社の会社概要</li>
+			<li>ペイトナーが提供しているサービスと商品</li>
+		</ol></li>
+		<li>ペイトナーの利用者の口コミ</li>
+		<li>ペイトナーの利用方法</li>
+		<li>ペイトナーのファクタリングサービス</li>
+		<li>ペイトナーの競合サービス</li>
+		<li>ペイトナーを利用するメリット</li>
+		<li>ペイトナーを利用する際の注意点<ol>
+			<li>初回利用時の買取上限額が低め</li>
+			<li>手数料が一律10％と高めに感じるケースがある</li>
+			<li>審査に通らないことがある</li>
+			<li>電話対応がなくオンライン完結型に限定される</li>
+			<li>大口・法人利用にはメリットが少ない</li>
+		</ol></li>
+	</ol></div>
+</div>
+
+<div class="title-lv1-a">
+	ペイトナーはフリーランス・個人事業主向けファクタリング専門サービス
+</div>
+
+<div class="plain-text-sec">
+東京都港区虎ノ門を本拠地とするペイトナー株式会社は、<span class="color-text">フリーランス・個人事業主向けの請求書買取（ファクタリング）</span>を専門領域とするサービスです。<br>
+<br>
+<span class="strong-text">AI審査によって最短10分で入金が完了する</span>点が最大の強みであり、納品から入金までのタイムラグで資金繰りに悩む場面や、<span class="color-text">少額の請求書でも柔軟に対応してもらえる手軽な資金調達手段</span>として、多くのフリーランスや個人事業主に利用されています。
+</div>
+
+<div class="title-lv2-a">
+	ペイトナーの企業紹介
+</div>
+
+<img class="wide-width-centered-image" src="https://lite-link.org/images/DFJXIQ/ペイトナー_ファクタリング_サービス説明画像" />
+<div class="image-note text-align-right">引用：<a href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">ペイトナー公式サイト</a></div>
+
+<div class="plain-text-sec">
+ペイトナーは、フリーランス・個人事業主・法人を対象とした請求書買取（ファクタリング）に特化した資金調達サービスです。2019年に設立されたペイトナー株式会社が運営しており、旧サービス名「yup先払い」から2022年にブランド変更、さらに2025年7月には「ペイトナーファクタリング」から現在の「ペイトナー」へとサービス名を改めました。セブン銀行や三井住友信託銀行などの大手金融機関との資本提携や、みずほ銀行イノベーションアワードの受賞歴を持つなど、スタートアップながら高い信頼性を備えています。
+</div>
+
+<div class="list-box-1">
+	<div class="list-box-1-title">
+		【ペイトナーの基本情報】
+	</div>
+	<div class="list-box-1-sub-title">
+		運営会社・公式サイト
+	</div>
+	<div class="list-box-1-content">
+		ペイトナー株式会社<br>
+		<a href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">公式サイト</a>
+	</div>
+	<div class="list-box-1-sub-title">
+		累計申込件数
+	</div>
+	<div class="list-box-1-content">
+		60万件突破
+	</div>
+	<div class="list-box-1-sub-title">
+		手数料
+	</div>
+	<div class="list-box-1-content">
+		10％固定（初期費用・月額費用なし）
+	</div>
+	<div class="list-box-1-sub-title">
+		買取可能額
+	</div>
+	<div class="list-box-1-content">
+		1万円〜（初回上限25〜30万円、継続利用で最大100〜300万円まで拡大）
+	</div>
+	<div class="list-box-1-sub-title">
+		必要書類
+	</div>
+	<div class="list-box-1-content">
+		請求書・本人確認書・入出金履歴の3点
+	</div>
+	<div class="list-box-1-sub-title">
+		営業時間
+	</div>
+	<div class="list-box-1-content">
+		平日 10:00〜19:00
+	</div>
+	<div class="list-box-1-sub-title">
+		登録・認可
+	</div>
+	<div class="list-box-1-content">
+		<a href="https://www.nikkei.com/compass/company/ryTfik7rNgU5jXNVKNWaFK">電子決済等代行業者登録（金融庁、2022年8月1日認定）</a>
+	</div>
+	<div class="list-box-1-sub-title">
+		加盟団体
+	</div>
+	<div class="list-box-1-content">
+		一般社団法人Fintech協会・フリーランス協会・一般社団法人クリエイターエコノミー協会・ITフリーランス支援機構
+	</div>
+</div>
+
+<div class="plain-text-sec">
+ペイトナーは、請求書を現金化する買取型の2社間ファクタリングサービスを提供するだけでなく、<span class="strong-text">独自のAI審査システムと与信アルゴリズムによってフリーランス・個人事業主の資金繰りを強力にサポートする</span>フィンテック企業です。<br>
+<br>
+「個人事業主やフリーランスが気兼ねなく利用できるサービスを作る」という姿勢を軸に、請求書さえあれば最短10分での入金を実現するなど、スピードと手軽さを追求した体制を整えています。
+</div>
+
+<div class="quote-text-box">
+【BtoB決済サービスの提供と与信モデルの企画・開発・運営】を事業の柱に据え、<br>
+資金繰りに悩むフリーランスや個人事業主が抱えるキャッシュフローの課題に寄り添うべく誕生したサービスです。
+<I><div class="quote-tail-note">ペイトナー公式サイト「会社概要」</div></I>
+</div>
+
+<div class="title-lv2-a">
+	ペイトナーが取り扱うファクタリングサービスの特徴
+</div>
+
+<div class="plain-text-sec">
+多様な資金需要に柔軟に対応すべく、ペイトナーでは下記に示す特徴を持つサービスを提供しています。
+</div>
+
+<div class="text-box-1-a">
+	<div class="text-box-1-a-title">
+		ペイトナー　サービス特徴一覧
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li><span class="strong-text">手数料率10％固定（初期費用・月額費用なし）</span></li>
+		<li><span class="strong-text">最短10分入金・AI審査によるスピード対応</span></li>
+		<li>買取金額1万円から利用可能</li>
+		<li>必要書類は請求書・本人確認書・入出金履歴の3点のみ</li>
+		<li>売掛先が個人事業主でも買取対応</li>
+		<li>掛目なし（売掛金の全額買取）</li>
+		<li>ノンリコース契約（売掛先が支払不能でも利用者に請求なし）</li>
+	</ul></div>
+</div>
+
+<div class="plain-text-sec">
+これらの特徴を活かすことで、<span class="strong-text">少額の急ぎ資金から継続的な資金繰りの安定化まで</span>、幅広い局面に対応することが期待できます。
+<br>
+たとえば、「<span class="strong-text">納品から入金まで時間が空いて資金が底をつきそうなタイミングで請求書を即日現金化</span>し、<span class="strong-text">取引を重ねて利用上限を引き上げながら安定したキャッシュフローを確保する</span>」といった戦略的な資金調達も十分に視野に入ります。
+</div>
+
+<a href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">
+	<div class="wide-width-shadowed-button-centered">
+		<div class="button-white-filled-left-badge">無料</div>
+		<div class="button-white-bold-text">
+			ペイトナーへの<br>
+			無料登録はこちら (公式サイト)
+		</div>
+	</div>
+</a>
+
+<div class="title-lv1-a">
+	ペイトナーの評判まとめ・選ばれる理由
+</div>
+
+<div class="table-title-a">
+	ペイトナー利用者による評価
+</div>
+<table class="ev-table">
+  <tbody>
+    <tr>
+      <td class="ev-label">おすすめ度</td>
+      <td><span class="tier-badge t-sp">S+</span></td>
+      <td class="ev-comment">フリーランス・個人事業主に自信を持っておすすめできる筆頭サービスです。</td>
+    </tr>
+    <tr>
+      <td class="ev-label">総合満足度</td>
+      <td><span class="tier-badge t-a">A</span></td>
+      <td class="ev-comment">スピード・手軽さ・信頼性のバランスが高く、全体的な満足度は非常に高い水準です。</td>
+    </tr>
+    <tr>
+      <td class="ev-label">手数料のわかりやすさ</td>
+      <td><span class="tier-badge t-sp">S+</span></td>
+      <td class="ev-comment">手数料10％固定で、複雑な計算や交渉が不要。透明性は業界トップクラスです。</td>
+    </tr>
+    <tr>
+      <td class="ev-label">入金スピード</td>
+      <td><span class="tier-badge t-s">S</span></td>
+      <td class="ev-comment">最短10分入金の実績があり、急ぎの資金調達ニーズにも十分応えられます。</td>
+    </tr>
+    <tr>
+      <td class="ev-label">使いやすさ</td>
+      <td><span class="tier-badge t-am">A−</span></td>
+      <td class="ev-comment">オンライン完結で書類も最小限。ただし電話窓口がなくAI審査のため、事情を直接説明できない点は惜しいです。</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="plain-text-sec">
+当サイトが実施したアンケート調査では、ペイトナーの<span class="marker-text">顧客満足度は非常に高い</span>結果となりました。<br>
+最短10分での入金スピードや、少額・個人事業主でも利用しやすい間口の広さが高い満足度につながっています。
+</div>
+
+<div class="text-box-1-a">
+	<div class="text-box-1-a-title">
+		2025年実施の独自調査結果
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>手数料10％固定で、初期費用・月額費用なしで利用できる</li>
+		<li>累計申込件数60万件突破の豊富な利用実績</li>
+		<li>金融庁への電子決済等代行業者登録済みで、セブン銀行・三井住友信託銀行などの大手金融機関とも資本提携した高い信頼性</li>
+	</ul></div>
+</div>
+
+<div class="text-box-1-a">
+	<div class="text-box-1-a-title">
+		ペイトナーの良い評判まとめ
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>AI審査により最短10〜30分で入金が完了するスピードの速さ</li>
+		<li>必要書類が請求書・本人確認書・入出金履歴の3点のみで、オンライン完結できる手軽さ</li>
+		<li>1万円からの少額買取に対応しており、売掛先が個人事業主の請求書でも買い取ってもらえる</li>
+		<li>手数料10％固定で掛目なし（売掛金の全額を買い取り）のため、受け取れる金額が明確</li>
+	</ul></div>
+</div>
+
+<div class="text-box-1-a color2">
+	<div class="text-box-1-a-title">
+		ペイトナーの悪い評判まとめ
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>初回利用時の上限額が25〜30万円と低く、100万円以上の大口資金調達には向かない</li>
+		<li>AI審査のため人に事情を説明できず、初回や同条件でも審査に通らないケースがある</li>
+		<li>電話窓口がなく、問い合わせがフォームのみのため、急ぎの場合に不便と感じる声がある</li>
+		<li>法人や建設業など大きな金額を必要とする事業者には、メリットが感じにくい場合がある</li>
+	</ul></div>
+</div>
+
+<div class="plain-text-sec">
+ペイトナーはスピードと手軽さが特徴ですが、初回の上限額の低さや電話対応のなさなど、利用シーンによっては物足りなさを感じることもあります。各ファクタリングサービスはそれぞれ異なる強みを持っているため、状況に応じて複数のサービスを比較・使い分けるのもおすすめです。例えば、ペイトナーで少額・スピード重視の資金調達をしながら、手数料2%〜8%と低コストで最短60分入金の<a href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">EasyFactor（イージーファクター）</a>や、買取金額に上限なく手数料1%〜対応の<a href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">QuQuMo online（ククモ）</a>を併用することで、それぞれのメリットを組み合わせ、デメリットを補い合うことが可能です。
+</div>
+
+<div class="table-title-h">
+	ファクタリングサービスの比較
+</div>
+<table class="service-list-table-h">
+  <thead>
+    <tr>
+      <th>サービス</th>
+      <th>ポイント</th>
+      <th>公式サイト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://lite-link.org/images/Kg5Fkq/EasyFactor_イージーファクター_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料2%〜8%！最短60分で資金調達！</span><br>
+      	東証スタンダード上場企業が運営するオンライン完結型ファクタリング
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/yIcVAC/ネクストワン_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">審査通過率96%！最短2時間で入金！</span><br>
+      	元銀行員スタッフが対応する2社間・3社間どちらにも対応のファクタリング
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/vQew1O/QuQuMo_ククモ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料1%〜！買取上限なしで最短2時間！</span><br>
+      	必要書類2点だけで完全オンライン完結、債権譲渡登記も不要
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/BIhqI-/えんナビ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">お客様満足度93%！24時間365日対応！</span><br>
+      	50万円〜5,000万円まで対応、2社間・3社間どちらにも利用可能
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/HH7QjG/ファクタリングサービス「えんナビ」">詳細 ▶</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="title-lv2-a">
+	ペイトナーが選ばれる理由
+</div>
+
+<div class="rich-design-list-box color-border">
+	<div class="rdlb-rich-laurel-decorated-title">
+		<div class="ldt-small-sub-text">ペイトナーが支持される</div>
+		<div class="ldt-main-text">5つのポイント</div>
+	</div>
+	<div class="rdlb-rich-number-decorated-list"><ol>
+		<li>AI審査で最短10分入金という圧倒的なスピードで、急な資金ニーズに即対応できる</li>
+		<li>手数料が10％固定で明瞭なため、利用前から正確なコストを把握しやすい</li>
+		<li>売掛金を掛目なく全額買い取る仕組みで、他社のように7〜8割しか受け取れないという事態が起きない</li>
+		<li>売掛先が個人事業主の請求書でも買取対応しており、少額・フリーランス案件にも強い</li>
+		<li>2回目以降は請求書1枚だけで申込できるリピート利用のしやすさで、継続的な資金繰りをサポートしてくれる</li>
+	</ol></div>
+</div>
+
+<div class="text-box-1-a color3">
+	<div class="text-box-1-a-title">
+		利用者の声が語る、選ばれる理由
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>AI審査で最短10〜30分という圧倒的なスピードで入金が完了する</li>
+		<li>請求書・本人確認書・入出金履歴の3点だけで申込でき、手続きがシンプル</li>
+		<li>売掛先が個人事業主の案件でも買取対応できる、他社にはない柔軟さがある</li>
+		<li>手数料が10％固定で明朗会計のため、初めてでも安心して利用できる</li>
+		<li>2回目以降は請求書1枚で申込が完結し、リピート利用がとにかく手軽</li>
+	</ul></div>
+</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		ペイトナーが多くのフリーランス・個人事業主に選ばれる背景には、AI審査による圧倒的な入金スピードと、少額・個人間請求書にも対応する幅広い買取基準の存在があります。手数料10％固定かつ掛目なしで売掛金を全額買い取る仕組みは、他社と比較しても非常に分かりやすく、資金繰りの見通しを立てやすい点は見逃せません。<br>
+		<br>
+		加えて、金融庁への電子決済等代行業者登録を取得済みで、<span class="strong-text">セブン銀行・三井住友信託銀行との資本提携やみずほ銀行イノベーションアワードの受賞</span>といった実績を持つことから、スタートアップでありながら高い信頼性を備えたサービスとして安心してご活用いただけます。
+	</div>
+</div>
+
+<div class="plain-text-sec">
+ペイトナーについてさらに詳しく知りたい方や、実際に使ってみることをご検討中の方は、ぜひ公式サイトをご確認ください。最新の情報をまとめてご覧いただけます。
+</div>
+
+<a href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">
+	<div class="wide-width-shadowed-button-centered">
+		<div class="button-white-filled-left-badge">無料</div>
+		<div class="button-white-bold-text">
+			ペイトナーへの<br>
+			無料登録はこちら (公式サイト)
+		</div>
+	</div>
+</a>
+
+<div class="title-lv1-a">
+	【メリット】ペイトナーへの評価・体験談
+</div>
+
+<div class="text-box-1-a color3">
+	<div class="text-box-1-a-title">
+		高評価レビューからわかる強み
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>AI審査による圧倒的なスピードで最短10〜30分で入金</li>
+		<li>少額・個人間請求書でも買取対応で使いやすい</li>
+		<li>必要書類が少なくオンライン完結で手続きが簡単</li>
+	</ul></div>
+</div>
+
+<div class="title-lv2-a">
+	AI審査による圧倒的なスピードで最短10〜30分で入金
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">申し込みから約20分で審査結果が届いた</div>
+			<div class="gray-text">フリーランス・職種不明 / ★5.0</div>
+		</div>
+	</div>
+	納品から入金まで時間が空いて資金繰りが苦しくなったタイミングで利用しました。AIでの申請後、約20分で審査結果の通知が届き、そのスピードの速さに驚きました。入金までのストレスがほとんどなく、急いでいる場面でも安心して使えるサービスだと感じました。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">30分以内に振込完了</div>
+			<div class="gray-text">個人事業主 / ★5.0</div>
+		</div>
+	</div>
+	個人間の請求書でも買い取ってもらえると知り申請したところ、たった30分で振込まで完了しました。ここまで早いとは思っていなかったので、正直驚きました。急な出費が重なったときにも頼れるサービスです。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	少額・個人間請求書でも買取対応で使いやすい
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">他社で断られた少額案件も審査通過</div>
+			<div class="gray-text">個人事業主・小規模事業者 / ★4.0</div>
+		</div>
+	</div>
+	請求書額が10万円以下の案件が多く、他社では利用できないと言われていましたが、ペイトナーでは審査に通り即日入金されました。提出物も少なくオンライン完結できる点も助かりました。少額のフリーランス案件が多い方にとっては特に心強いサービスだと思います。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	必要書類が少なくオンライン完結で手続きが簡単
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">請求書だけで完結、午前中に申し込んで午前中に入金</div>
+			<div class="gray-text">個人事業主・男性 / ★5.0</div>
+		</div>
+	</div>
+	月末締めの請求書を9時前に申し込んだところ、10時半には入金されていました。提出書類は請求書のみでとても楽でした。面倒な書類準備が不要なので、忙しいフリーランスや個人事業主の方にはおすすめできます。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://kotoba-seikatsu.com/wp-content/uploads/2023/04/%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-47.png" />
+		<div>
+			<div class="bold-color-text">初心者でも分かりやすく安心して使えた</div>
+			<div class="gray-text">ファクタリング初心者 / ★4.0</div>
+		</div>
+	</div>
+	インターネットで評判を調べた結果、安心して利用できると判断しました。オンラインでの手続きや書類の書き方が分かりやすく、ファクタリングを初めて利用する方にも優しい設計だと感じました。難しそうというイメージが払拭されました。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーは請求書をアップロードするだけでAI審査が完結し、<span class="marker-text">「スピードが早く書類が少ない」</span>という声が多く寄せられています。
+</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		初回上限額に物足りなさを感じる場合や、より手数料を抑えたい場合は、<a href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">QuQuMo online（ククモ）</a>を合わせて検討するのがおすすめです。手数料1%〜・買取上限なし・完全オンライン完結と、ペイトナーの弱点を補う強みを持っています。
+	</div>
+</div>
+
+<div class="table-title-h">
+	主要ファクタリングサービスとの比較
+</div>
+<table class="service-list-table-h">
+  <thead>
+    <tr>
+      <th>サービス</th>
+      <th>ポイント</th>
+      <th>公式サイト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://lite-link.org/images/vX9IGx/ペイトナー_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短10分入金・手数料10％固定！</span><br>
+      	フリーランス・個人事業主向けに特化した少額対応のオンライン完結ファクタリング
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/Kg5Fkq/EasyFactor_イージーファクター_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短60分で資金調達！手数料2%〜8%</span><br>
+      	東証スタンダード上場企業運営のオンライン完結型ファクタリング
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/yIcVAC/ネクストワン_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">審査通過率96%・最短2時間で入金！</span><br>
+      	元銀行員スタッフ対応で2社間・3社間どちらにも対応
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/vQew1O/QuQuMo_ククモ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料1%〜・買取上限なし！</span><br>
+      	必要書類2点のみで最短2時間、完全オンライン完結
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/BIhqI-/えんナビ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">24時間365日問い合わせ対応・満足度93%！</span><br>
+      	50万円〜5,000万円に対応し2社間・3社間どちらも利用可能
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/HH7QjG/ファクタリングサービス「えんナビ」">詳細 ▶</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="title-lv2-a">
+	申込・手続きがオンラインで完結できる
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">書類が少なくオンラインで完結できる</div>
+			<div class="gray-text">個人事業主・年代不明 / ★4.5</div>
+		</div>
+	</div>
+	請求書額が10万円以下の案件が多く他社のファクタリングでは利用できなかったのですが、ペイトナーでは審査に通り即日入金してもらえました。提出する書類も少なく、すべてオンラインで完結できる点がとても助かりました。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーは請求書・本人確認書類・入出金履歴の3点だけで申込でき、<span class="marker-text">すべての手続きをオンラインで完結できる</span>のが大きな特徴です。2回目以降は請求書のみで申込可能なため、リピート利用時の手軽さはさらに増します。
+</div>
+
+<img class="wide-width-centered-image" src="https://lite-link.org/images/5_agnr/ペイトナー_ファクタリング_申請画面_スクリーンショット"/>
+<div class="image-note text-align-right">出典：公式サイト</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		フリーランスや個人事業主にとって、資金繰りの悩みはいつでも切実です。そんな状況だからこそ、スマホひとつで完結できるシンプルな操作性と、AIによる最短10分という圧倒的な入金スピードは非常に頼もしく、急な資金需要にも素早く対応できます。
+	</div>
+</div>
+
+<div class="title-lv2-a">
+	少額案件でも買い取ってもらえた
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">他社で断られた少額請求書も通った</div>
+			<div class="gray-text">個人事業主・年齢不明 / ★4.0</div>
+		</div>
+	</div>
+	請求書の額面が10万円以下の案件ばかりで他のファクタリング会社では利用できなかったのですが、ペイトナーでは審査に通り、即日入金してもらえました。提出書類も少なくオンラインで完結できるので、手間もほとんど感じませんでした。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	他のファクタリングサービスでは対応していない少額案件や売掛先が個人事業主のケースにも柔軟に対応できるなど、ペイトナーはフリーランス・個人事業主に特化した独自の強みを持っています。請求書1枚からオンラインで申し込め、最短10分で入金された実績もあることから、急な資金繰りへの対応力という点でこのサービスを使う大きなメリットがあると言えます。
+</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		手数料の低さを重視するなら<span class="marker-text">手数料1%〜と業界最安水準</span>の<a href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">QuQuMo online（ククモ）</a>もおすすめです。<br>
+		<br>
+		ファクタリング会社によって手数料率や審査基準、対応できる請求書の金額帯には大きな差があるため、複数社に問い合わせて比較することで、自分の状況に最も合ったサービスを見つけられる可能性が高まります。
+	</div>
+</div>
+
+<div class="table-title-h">
+	主要ファクタリングサービスとの比較
+</div>
+<table class="service-list-table-h">
+  <thead>
+    <tr>
+      <th>サービス</th>
+      <th>ポイント</th>
+      <th>公式サイト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://lite-link.org/images/vX9IGx/ペイトナー_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短10分で入金！手数料10%固定</span><br>
+      	少額・個人事業主間の請求書にも対応するフリーランス向け定番サービス
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/Kg5Fkq/EasyFactor_イージーファクター_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短60分で資金調達！手数料2%〜8%</span><br>
+      	東証スタンダード上場企業運営のオンライン完結型ファクタリング
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/yIcVAC/ネクストワン_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">資金調達成功率96%！手数料1.5%〜10%</span><br>
+      	2社間・3社間両対応、30万円から上限なしで利用できるサービス
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/vQew1O/QuQuMo_ククモ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料1%〜と業界最安水準！最短2時間で現金化</span><br>
+      	必要書類は請求書と通帳の2点のみ、買取金額上限なしの完全オンライン完結サービス
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/BIhqI-/えんナビ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">審査通過率97%！24時間365日問い合わせ対応</span><br>
+      	50万円〜5,000万円に対応し、2社間・3社間どちらも選べる幅広いサービス
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/HH7QjG/ファクタリングサービス「えんナビ」">詳細 ▶</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="title-lv1-a">
+	【デメリット】ペイトナーの評判・口コミ
+</div>
+
+<div class="text-box-1-a color3">
+	<div class="text-box-1-a-title">
+		低評価な口コミが示す注意点
+	</div>
+	<div class="text-box-1-a-content"><ul>
+		<li>初回審査に通らないことがある</li>
+		<li>初回の買取上限額が低く大口には対応しにくい</li>
+		<li>同じ条件でも2回目以降の審査で落ちるケースがある</li>
+		<li>電話対応がなく人に事情を説明できない</li>
+	</ul></div>
+</div>
+
+<div class="title-lv2-a">
+	初回審査が通らないことがある
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">初めて申請したが審査に落ちてしまった</div>
+			<div class="gray-text">性別不明・年代不明 / ★3.0</div>
+		</div>
+	</div>
+	ペイトナーに初めて申請してみたが、審査が通らなかった。初回は特に慎重な審査が行われるようで、利用実績がないと弾かれやすいのかもしれない。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	初回の買取上限額が低い
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">初回上限30万円では建設業の資金調達には足りなかった</div>
+			<div class="gray-text">男性・30代以上 / ★2.0</div>
+		</div>
+	</div>
+	資材費として100万円を調達したくて申し込んだが、初回の買取上限は30万円と言われてしまい断念した。フリーランスや個人の少額利用には向いているかもしれないが、建設業のような大口の資金需要には対応しきれないと感じた。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	2回目以降も審査落ちするケースがある
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://kotoba-seikatsu.com/wp-content/uploads/2023/04/%E5%90%8D%E7%A7%B0%E6%9C%AA%E8%A8%AD%E5%AE%9A%E3%81%AE%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3-47.png" />
+		<div>
+			<div class="bold-color-text">同じ条件なのに2回目の審査が通らなかった</div>
+			<div class="gray-text">性別不明・年代不明 / ★2.5</div>
+		</div>
+	</div>
+	売掛先も金額も前回とまったく同じ条件で申請したのに、2回目の審査が通らなかった。AI審査のため基準が不透明で、なぜ落ちたのかを担当者に直接確認することもできないのがもどかしい。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	電話対応がなく事情を説明できない
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">電話で相談できないのが不便</div>
+			<div class="gray-text">性別不明・年代不明 / ★3.0</div>
+		</div>
+	</div>
+	審査が通らなかったとき、理由を確認したり個別の事情を説明したりしたくても、電話窓口がないためそれができない。最近は審査が厳しくなったという声もあり、融通の利かなさを感じる。オンライン完結の利便性は認めるが、いざというときに人と話せない点は大きな不満だ。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="title-lv2-a">
+	法人利用では差別化しにくい
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">法人として使うメリットをあまり感じなかった</div>
+			<div class="gray-text">男性・年代不明 / ★3.0</div>
+		</div>
+	</div>
+	オンラインで完結できる点は評価しているが、それ以外は一般的な2社間ファクタリングとほぼ変わらない印象だった。ペイトナーの強みはフリーランスや個人事業主向けの少額・スピード対応にあると思うので、法人がわざわざ選ぶ積極的な理由は見つけにくかった。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーはAI審査を採用しているため、審査に通らなかった場合でも人に事情を説明することができず、不満に感じるユーザーが一定数いるようです。
+</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		大口の資金調達や柔軟な交渉を希望する人は<a href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">ネクストワン</a>がおすすめです。元銀行員やノンバンク出身スタッフが担当するため、事情をしっかり説明しながら進めることができ、30万円から上限なしの資金調達に対応しています。<br>
+		<br>
+		手数料の低さを重視する人には、<span class="marker-text">手数料1%〜で完全オンライン完結の</span><a href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">QuQuMo online（ククモ）</a>も良いですね。
+	</div>
+</div>
+
+<div class="title-lv2-a">
+	初回の利用上限額が低い
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">初回上限30万円で断念した</div>
+			<div class="gray-text">男性・建設業経営者 / ★2.0</div>
+		</div>
+	</div>
+	資材費として100万円を調達したくてペイトナーに申し込みましたが、初回の利用上限が30万円と言われてしまい断念しました。フリーランスの少額利用には向いているかもしれませんが、建設業のような高額の資金需要には正直合っていないと感じました。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ファクタリングサービスは手数料や審査基準がサービスによって大きく異なるため、担当者や審査システムによっては希望通りに利用できないケースもあります。
+</div>
+
+<div class="one-point-advice-box">
+	<div class="left-right-align">
+		<img class="icon-like-circle-image" src="https://lh5.googleusercontent.com/_ZP_f0v4gQEedyKKuZRxgDFtd1KzATfP3pbHvq7ybS7uXDoPXNg1VDBvg9uFQTfNNO-4wysQPmC4pw_zRHRXP493f2KmHDN_sG6yXIokAVoGynwG2_2gkrtIMYje1qYwBD0QmRW7SJwQvnkM5_4rfhs" />
+		<div>
+			<div class="gray-small-text">徹底比較サイト代表</div>
+			<div class="bold-name-text">守谷啓助</div>
+		</div>
+	</div>
+	<div class="gray-filled-round-corner-box">
+		審査に通らない場合や上限額が足りない場合は、複数のファクタリングサービスに申し込んでみることをおすすめします。<br>
+		<br>
+		ペイトナーはAI審査のため人に事情を説明できない点がデメリットになることもあります。初回上限額の低さや審査通過の難しさを感じた場合は、EasyFactorやQuQuMo、ネクストワンといった競合サービスと併用しながら、自分の利用スタイルに合ったサービスを探してみるとよいでしょう。
+	</div>
+</div>
+
+<div class="table-title-h">
+	主要ファクタリングサービスとの比較
+</div>
+<table class="service-list-table-h">
+  <thead>
+    <tr>
+      <th>サービス</th>
+      <th>ポイント</th>
+      <th>公式サイト</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://lite-link.org/images/vX9IGx/ペイトナー_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短10分入金！手数料10％固定で明快！</span><br>
+      	個人事業主・フリーランスに特化したオンライン完結型ファクタリング。売掛先が個人事業主でも対応可能な業界唯一の強みを持つ。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/2l8BO-/ファクタリングサービス「ペイトナー」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/Kg5Fkq/EasyFactor_イージーファクター_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">最短60分で資金調達！東証上場グループ運営！</span><br>
+      	手数料2%〜8%とリーズナブル。ZoomとクラウドサインによるWeb契約対応で、法人・個人事業主ともに利用可能。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/UxFaI5/ファクタリングサービス「EasyFactor」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/yIcVAC/ネクストワン_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">審査通過率96%！最短2時間で入金！</span><br>
+      	手数料1.5%〜10%。2社間・3社間の両方に対応し、元銀行員スタッフによる丁寧なサポートが好評。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/BIgf8N/ファクタリングサービス「ネクストワン」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/vQew1O/QuQuMo_ククモ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">手数料1%〜！必要書類はたったの2点！</span><br>
+      	完全オンライン完結で最短2時間現金化。買取金額に上限なし、債権譲渡登記不要で手軽に利用できる。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/AVYgGt/ファクタリングサービス「QuQuMo_online」">詳細 ▶</a></td>
+    </tr>
+    <tr>
+      <td><img src="https://lite-link.org/images/BIhqI-/えんナビ_ファクタリング_logo"/></td>
+      <td>
+      	<span class="table-strong-text-h">24時間365日対応！審査通過率97%！</span><br>
+      	利用可能額50万円〜5,000万円と幅広く対応。2社間・3社間の両方に対応し、顧客満足度93%の高評価を誇る。
+      </td>
+      <td><a class="link-button-h" href="https://lite-link.org/service_page/HH7QjG/ファクタリングサービス「えんナビ」">詳細 ▶</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="title-lv2-a">
+	審査に通らないことがある
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">初回審査で落ちてしまった</div>
+			<div class="gray-text">性別不明・年代不明 / ★2.0</div>
+		</div>
+	</div>
+	ペイトナーに初めて申請してみたが、審査が通らなかった。初回利用はとくに慎重に審査されるようで、審査に落ちても理由の説明がなく、次にどう対処すればいいかが分からないまま終わってしまった。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーはAI審査を採用しているため、初回は特に厳しく判定される傾向があります。<span class="marker-text">初回審査に通らないこと自体は珍しくなく</span>、取引実績を積み重ねることで徐々に利用上限額も上がっていく仕組みです。初回で落ちた場合でも、改めて別の請求書で再申請するか、QuQuMoやネクストワンなど手数料帯の異なる競合サービスも併せて検討してみることをおすすめします。
+</div>
+
+<div class="title-lv2-a">
+	初回の利用上限額が低い
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">初回上限が低く、大口の資金調達には向かなかった</div>
+			<div class="gray-text">男性・40代 / ★2.0</div>
+		</div>
+	</div>
+	資材費として100万円を調達したくて申し込んだが、初回の上限が30万円と言われて断念することになった。フリーランスや少額利用者向けのサービスであることは理解できるが、建設業のような大口ニーズには対応しきれないと感じた。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーの初回利用上限は25〜30万円に設定されており、<span class="marker-text">大口の資金調達を必要とする法人や建設業などには不向き</span>な面があります。継続利用により最大100〜300万円まで上限が拡大しますが、すぐに大きな金額が必要な場合は、利用額に上限のないQuQuMoや、30万円から上限なしで対応するネクストワンなど他サービスを検討するのが現実的です。
+</div>
+
+<div class="title-lv2-a">
+	電話対応がなくAI審査のため事情を説明できない
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">電話で事情を説明できないのが不便</div>
+			<div class="gray-text">男性・年代不明 / ★2.0</div>
+		</div>
+	</div>
+	最近審査が厳しくなったと感じているうえ、電話窓口がないため審査結果に納得いかなくても人に直接事情を説明する手段がない。オンライン完結は便利だが、こちらの状況を伝えられないもどかしさがある。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーはAI審査・オンライン完結を徹底しているため、電話による問い合わせ窓口を設けていません。<span class="marker-text">個別の事情を担当者に直接説明したい場合には対応しづらい</span>という点は、サービスの設計上の割り切りといえます。対面・電話対応を重視する場合は、元銀行員スタッフが対応するネクストワンや、24時間365日問い合わせに対応するえんナビなど、有人サポートを重視したサービスを選ぶと良いでしょう。
+</div>
+
+<div class="title-lv2-a">
+	法人利用には大きなメリットを感じにくい
+</div>
+
+<div class="pastel-color-filled-round-corner-box">
+	<div class="right-left-align">
+		<img class="circle-icon" src="https://www.hanwaotori.co.jp/wp/wp-content/uploads/2026/06/man.png" />
+		<div>
+			<div class="bold-color-text">法人での利用にはあまりメリットを感じなかった</div>
+			<div class="gray-text">男性・年代不明 / ★3.0</div>
+		</div>
+	</div>
+	オンラインで完結できる点は評価できるものの、それ以外は通常の2社間ファクタリングと大差なく、法人としては特別な優位性を見いだせなかった。手数料10％固定という点も、法人で大きな金額を動かす場合にはコスト面で重くなりがちだと感じた。
+	<div class="gray-note-text">出典：第三者評判サイト</div>
+</div>
+
+<div class="plain-text-sec">
+	ペイトナーはフリーランス・個人事業主をメインターゲットとして設計されたサービスであり、<span class="marker-text">法人が大口取引を行う用途には最適化されていない</span>面があります。法人での利用や大きな金額を動かしたい場合は、手数料2〜8％のEasyFactorや、利用額上限のないQuQuMo、あるいは5,000万円まで対応するえんナビなど、スケールに応じたサービスを選ぶことを検討してみてください。
+</div>
